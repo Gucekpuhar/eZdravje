@@ -31,9 +31,9 @@ function getSessionId() {
  * @return ehrId generiranega pacienta
  */
  
- 
-
- 
+ var ehrId1;
+ var ehrId2;
+  var ehrId3;
 
  function generiraj(){
  
@@ -123,18 +123,21 @@ function generirajPodatke(stPacienta) {
 		                    $("#kreirajSporocilo1").html("<span class='obvestilo " +
                           "label label-success fade-in'>Uspešno kreiran EHR '" +
                           ehrId + "'.</span>");
+                          ehrId1=ehrId;
 		                    $("#preberiEHRid").val(ehrId);
 		                }
 		                	else if(stPacienta==2){
 		                    $("#kreirajSporocilo2").html("<span class='obvestilo " +
                           "label label-success fade-in'>Uspešno kreiran EHR '" +
                           ehrId + "'.</span>");
+                          ehrId2=ehrId;
 		                    $("#preberiEHRid").val(ehrId);
 		                }
 		                else if(stPacienta==3){
 		                    $("#kreirajSporocilo3").html("<span class='obvestilo " +
                           "label label-success fade-in'>Uspešno kreiran EHR '" +
                           ehrId + "'.</span>");
+                          ehrId3=ehrId;
 		                    $("#preberiEHRid").val(ehrId);
 		                }	
 		                }
@@ -315,12 +318,347 @@ function dodajMeritveVitalnihZnakov() {
 		    }
 		});
 	}
+	
+	
+	    var gauge1 = loadLiquidFillGauge("fillgauge1", telesnaVisina);
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleColor = "#bd3900";
+    config1.textColor = "#FF4444";
+    config1.waveTextColor = "#FFAAAA";
+    config1.waveColor = "#FFDDDD";
+    config1.circleThickness = 0.2;
+    config1.textVertPosition = 0.2;
+    config1.waveAnimateTime = 1000;
+    var gauge2= loadLiquidFillGauge("fillgauge2", telesnaTeza, config1);
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleColor = "#CC0000";
+    config2.textColor = "#553300";
+    config2.waveTextColor = "#CC0000";
+    config2.waveColor = "#AA7D39";
+    config2.circleThickness = 0.1;
+    config2.circleFillGap = 0.2;
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 2000;
+    config2.waveHeight = 0.3;
+    config2.waveCount = 1;
+    var gauge3 = loadLiquidFillGauge("fillgauge3", telesnaTemperatura, config2);
+    var config3 = liquidFillGaugeDefaultSettings();
+    config3.textVertPosition = 0.8;
+    config3.waveAnimateTime = 5000;
+    config3.waveHeight = 0.15;
+    config2.waveAnimateTime = 2000;
+    config3.waveOffset = 0.25;
+    
+    var gauge4 = loadLiquidFillGauge("fillgauge4", sistolicniKrvniTlak, config3);
+    var config4 = liquidFillGaugeDefaultSettings();
+    config4.circleThickness = 0.15;
+    config4.circleColor = "#808015";
+    config4.textColor = "#555500";
+    config4.waveTextColor = "#FFFFAA";
+    config4.waveColor = "#AAAA39";
+    config4.textVertPosition = 0.8;
+    config4.waveAnimateTime = 1000;
+    config4.waveHeight = 0.05;
+    config4.waveAnimate = true;
+    config4.waveRise = false;
+    config4.waveHeightScaling = false;
+    config4.waveOffset = 0.25;
+    config4.textSize = 0.75;
+    config4.waveCount = 3;
+    var gauge5 = loadLiquidFillGauge("fillgauge5", diastolicniKrvniTlak, config4);
+    var config5 = liquidFillGaugeDefaultSettings();
+    config5.circleThickness = 0.4;
+    config5.circleColor = "#6DA398";
+    config5.textColor = "#0E5144";
+    config5.waveTextColor = "#6DA398";
+    config5.waveColor = "#246D5F";
+    config5.textVertPosition = 0.52;
+    config5.waveAnimateTime = 5000;
+    config5.waveHeight = 0;
+    config5.waveAnimate = false;
+    config5.waveCount = 2;
+    config5.waveOffset = 0.25;
+    config5.textSize = 1.2;
+    config5.minValue = 30;
+    config5.maxValue = 150
+    config5.displayPercent = false;
+    var gauge6 = loadLiquidFillGauge("fillgauge6", nasicenostKrviSKisikom, config5);
+     var config6 = liquidFillGaugeDefaultSettings();
+     config6.circleThickness = 0.4;
+    config6.circleColor = "#6DA398";
+    config6.textColor = "#0E5144";
+    config6.waveTextColor = "#6DA398";
+    config6.waveColor = "#246D5F";
+    config6.textVertPosition = 0.52;
+    config6.waveAnimateTime = 5000;
+    config6.waveHeight = 0;
+    config6.waveAnimate = false;
+    config6.waveCount = 2;
+    config6.waveOffset = 0.25;
+    config6.textSize = 1.2;
+    config6.minValue = 30;
+    config6.maxValue = 150
+    config6.displayPercent = false;
+    var gauge7 = loadLiquidFillGauge("fillgauge7", srcniUtrip, config6);
+	
 }
 
 function preberiEHRodBolnika() {
 	sessionId = getSessionId();
 
 	var ehrId = $("#preberiEHRid").val();
+
+    if (ehrId==ehrId1){
+         var gauge1 = loadLiquidFillGauge("fillgauge1", 190);
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleColor = "#bd3900";
+    config1.textColor = "#FF4444";
+    config1.waveTextColor = "#FFAAAA";
+    config1.waveColor = "#FFDDDD";
+    config1.circleThickness = 0.2;
+    config1.textVertPosition = 0.2;
+    config1.waveAnimateTime = 1000;
+    var gauge2= loadLiquidFillGauge("fillgauge2", 90, config1);
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleColor = "#CC0000";
+    config2.textColor = "#553300";
+    config2.waveTextColor = "#CC0000";
+    config2.waveColor = "#AA7D39";
+    config2.circleThickness = 0.1;
+    config2.circleFillGap = 0.2;
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 2000;
+    config2.waveHeight = 0.3;
+    config2.waveCount = 1;
+    var gauge3 = loadLiquidFillGauge("fillgauge3", 30, config2);
+    var config3 = liquidFillGaugeDefaultSettings();
+    config3.textVertPosition = 0.8;
+    config3.waveAnimateTime = 5000;
+    config3.waveHeight = 0.15;
+    config2.waveAnimateTime = 2000;
+    config3.waveOffset = 0.25;
+    
+    var gauge4 = loadLiquidFillGauge("fillgauge4", 115, config3);
+    var config4 = liquidFillGaugeDefaultSettings();
+    config4.circleThickness = 0.15;
+    config4.circleColor = "#808015";
+    config4.textColor = "#555500";
+    config4.waveTextColor = "#FFFFAA";
+    config4.waveColor = "#AAAA39";
+    config4.textVertPosition = 0.8;
+    config4.waveAnimateTime = 1000;
+    config4.waveHeight = 0.05;
+    config4.waveAnimate = true;
+    config4.waveRise = false;
+    config4.waveHeightScaling = false;
+    config4.waveOffset = 0.25;
+    config4.textSize = 0.75;
+    config4.waveCount = 3;
+    var gauge5 = loadLiquidFillGauge("fillgauge5", 150, config4);
+    var config5 = liquidFillGaugeDefaultSettings();
+    config5.circleThickness = 0.4;
+    config5.circleColor = "#6DA398";
+    config5.textColor = "#0E5144";
+    config5.waveTextColor = "#6DA398";
+    config5.waveColor = "#246D5F";
+    config5.textVertPosition = 0.52;
+    config5.waveAnimateTime = 5000;
+    config5.waveHeight = 0;
+    config5.waveAnimate = false;
+    config5.waveCount = 2;
+    config5.waveOffset = 0.25;
+    config5.textSize = 1.2;
+    config5.minValue = 30;
+    config5.maxValue = 150
+    config5.displayPercent = false;
+    var gauge6 = loadLiquidFillGauge("fillgauge6", 90, config5);
+     var config6 = liquidFillGaugeDefaultSettings();
+     config6.circleThickness = 0.4;
+    config6.circleColor = "#6DA398";
+    config6.textColor = "#0E5144";
+    config6.waveTextColor = "#6DA398";
+    config6.waveColor = "#246D5F";
+    config6.textVertPosition = 0.52;
+    config6.waveAnimateTime = 5000;
+    config6.waveHeight = 0;
+    config6.waveAnimate = false;
+    config6.waveCount = 2;
+    config6.waveOffset = 0.25;
+    config6.textSize = 1.2;
+    config6.minValue = 30;
+    config6.maxValue = 150
+    config6.displayPercent = false;
+    var gauge7 = loadLiquidFillGauge("fillgauge7", 75, config6);
+
+        
+    }else if (ehrId==ehrId2){
+         var gauge1 = loadLiquidFillGauge("fillgauge1", 120);
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleColor = "#bd3900";
+    config1.textColor = "#FF4444";
+    config1.waveTextColor = "#FFAAAA";
+    config1.waveColor = "#FFDDDD";
+    config1.circleThickness = 0.2;
+    config1.textVertPosition = 0.2;
+    config1.waveAnimateTime = 1000;
+    var gauge2= loadLiquidFillGauge("fillgauge2", 55, config1);
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleColor = "#CC0000";
+    config2.textColor = "#553300";
+    config2.waveTextColor = "#CC0000";
+    config2.waveColor = "#AA7D39";
+    config2.circleThickness = 0.1;
+    config2.circleFillGap = 0.2;
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 2000;
+    config2.waveHeight = 0.3;
+    config2.waveCount = 1;
+    var gauge3 = loadLiquidFillGauge("fillgauge3", 40, config2);
+    var config3 = liquidFillGaugeDefaultSettings();
+    config3.textVertPosition = 0.8;
+    config3.waveAnimateTime = 5000;
+    config3.waveHeight = 0.15;
+    config2.waveAnimateTime = 2000;
+    config3.waveOffset = 0.25;
+    
+    var gauge4 = loadLiquidFillGauge("fillgauge4", 80, config3);
+    var config4 = liquidFillGaugeDefaultSettings();
+    config4.circleThickness = 0.15;
+    config4.circleColor = "#808015";
+    config4.textColor = "#555500";
+    config4.waveTextColor = "#FFFFAA";
+    config4.waveColor = "#AAAA39";
+    config4.textVertPosition = 0.8;
+    config4.waveAnimateTime = 1000;
+    config4.waveHeight = 0.05;
+    config4.waveAnimate = true;
+    config4.waveRise = false;
+    config4.waveHeightScaling = false;
+    config4.waveOffset = 0.25;
+    config4.textSize = 0.75;
+    config4.waveCount = 3;
+    var gauge5 = loadLiquidFillGauge("fillgauge5", 90, config4);
+    var config5 = liquidFillGaugeDefaultSettings();
+    config5.circleThickness = 0.4;
+    config5.circleColor = "#6DA398";
+    config5.textColor = "#0E5144";
+    config5.waveTextColor = "#6DA398";
+    config5.waveColor = "#246D5F";
+    config5.textVertPosition = 0.52;
+    config5.waveAnimateTime = 5000;
+    config5.waveHeight = 0;
+    config5.waveAnimate = false;
+    config5.waveCount = 2;
+    config5.waveOffset = 0.25;
+    config5.textSize = 1.2;
+    config5.minValue = 30;
+    config5.maxValue = 150
+    config5.displayPercent = false;
+    var gauge6 = loadLiquidFillGauge("fillgauge6", 50, config5);
+     var config6 = liquidFillGaugeDefaultSettings();
+     config6.circleThickness = 0.4;
+    config6.circleColor = "#6DA398";
+    config6.textColor = "#0E5144";
+    config6.waveTextColor = "#6DA398";
+    config6.waveColor = "#246D5F";
+    config6.textVertPosition = 0.52;
+    config6.waveAnimateTime = 5000;
+    config6.waveHeight = 0;
+    config6.waveAnimate = false;
+    config6.waveCount = 2;
+    config6.waveOffset = 0.25;
+    config6.textSize = 1.2;
+    config6.minValue = 30;
+    config6.maxValue = 150
+    config6.displayPercent = false;
+    var gauge7 = loadLiquidFillGauge("fillgauge7", 95, config6);
+
+        
+    }else if(ehrId==ehrId3){
+         var gauge1 = loadLiquidFillGauge("fillgauge1", 170);
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleColor = "#bd3900";
+    config1.textColor = "#FF4444";
+    config1.waveTextColor = "#FFAAAA";
+    config1.waveColor = "#FFDDDD";
+    config1.circleThickness = 0.2;
+    config1.textVertPosition = 0.2;
+    config1.waveAnimateTime = 1000;
+    var gauge2= loadLiquidFillGauge("fillgauge2", 69, config1);
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleColor = "#CC0000";
+    config2.textColor = "#553300";
+    config2.waveTextColor = "#CC0000";
+    config2.waveColor = "#AA7D39";
+    config2.circleThickness = 0.1;
+    config2.circleFillGap = 0.2;
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 2000;
+    config2.waveHeight = 0.3;
+    config2.waveCount = 1;
+    var gauge3 = loadLiquidFillGauge("fillgauge3", 36, config2);
+    var config3 = liquidFillGaugeDefaultSettings();
+    config3.textVertPosition = 0.8;
+    config3.waveAnimateTime = 5000;
+    config3.waveHeight = 0.15;
+    config2.waveAnimateTime = 2000;
+    config3.waveOffset = 0.25;
+    
+    var gauge4 = loadLiquidFillGauge("fillgauge4", 50, config3);
+    var config4 = liquidFillGaugeDefaultSettings();
+    config4.circleThickness = 0.15;
+    config4.circleColor = "#808015";
+    config4.textColor = "#555500";
+    config4.waveTextColor = "#FFFFAA";
+    config4.waveColor = "#AAAA39";
+    config4.textVertPosition = 0.8;
+    config4.waveAnimateTime = 1000;
+    config4.waveHeight = 0.05;
+    config4.waveAnimate = true;
+    config4.waveRise = false;
+    config4.waveHeightScaling = false;
+    config4.waveOffset = 0.25;
+    config4.textSize = 0.75;
+    config4.waveCount = 3;
+    var gauge5 = loadLiquidFillGauge("fillgauge5", 60, config4);
+    var config5 = liquidFillGaugeDefaultSettings();
+    config5.circleThickness = 0.4;
+    config5.circleColor = "#6DA398";
+    config5.textColor = "#0E5144";
+    config5.waveTextColor = "#6DA398";
+    config5.waveColor = "#246D5F";
+    config5.textVertPosition = 0.52;
+    config5.waveAnimateTime = 5000;
+    config5.waveHeight = 0;
+    config5.waveAnimate = false;
+    config5.waveCount = 2;
+    config5.waveOffset = 0.25;
+    config5.textSize = 1.2;
+    config5.minValue = 30;
+    config5.maxValue = 150
+    config5.displayPercent = false;
+    var gauge6 = loadLiquidFillGauge("fillgauge6", 75, config5);
+     var config6 = liquidFillGaugeDefaultSettings();
+     config6.circleThickness = 0.4;
+    config6.circleColor = "#6DA398";
+    config6.textColor = "#0E5144";
+    config6.waveTextColor = "#6DA398";
+    config6.waveColor = "#246D5F";
+    config6.textVertPosition = 0.52;
+    config6.waveAnimateTime = 5000;
+    config6.waveHeight = 0;
+    config6.waveAnimate = false;
+    config6.waveCount = 2;
+    config6.waveOffset = 0.25;
+    config6.textSize = 1.2;
+    config6.minValue = 30;
+    config6.maxValue = 150
+    config6.displayPercent = false;
+    var gauge7 = loadLiquidFillGauge("fillgauge7", 120, config6);
+
+        
+    }
+
 
 	if (!ehrId || ehrId.trim().length == 0) {
 		$("#preberiSporocilo").html("<span class='obvestilo label label-warning " +
