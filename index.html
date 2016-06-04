@@ -11,7 +11,7 @@
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
    <script src="https://d3js.org/d3.v3.min.js" language="JavaScript"></script>
- <script src="knjiznice/js/liquidFillGauge.js" language="JavaScript"></script>
+
 
  <style>
         .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
@@ -63,7 +63,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8"><b>Kreiraj EHR zapis</b> za novega bolnika</div>
-							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option></select></div>
+							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiPredlogoBolnika"></select></div>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -117,16 +117,13 @@
         
 
       
-      	<div class="col-lg-4 col-md-6 col-sm-6">
+      	<div class="col-lg-4 col-md-6 col-sm-6"><b>
+      	</b></div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8"><b>Preberi podatke</b> obstoječega bolnika</div> 
 							 
-						
-
-							
-						
 						</div>
 					</div>
 					
@@ -147,18 +144,46 @@
 			</div>
       
       <body>
-<svg id="fillgauge1" width="19%" height="250" onclick=""></svg>
-<svg id="fillgauge2" width="19%" height="200" onclick=""></svg>
-<svg id="fillgauge3" width="19%" height="200" onclick=""></svg>
-<svg id="fillgauge4" width="19%" height="200" onclick=""></svg>
-<svg id="fillgauge5" width="19%" height="200" onclick=""></svg>
-<svg id="fillgauge6" width="19%" height="200" onclick=""></svg>
-<svg id="fillgauge7" width="50%" height="200" onclick=""></svg>
+        	<div class="col-lg-10 col-md-10 col-sm-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							
+					</div>
+					
+				
+					<div class="panel-body">
+					
+						<svg id="fillgauge1" width="15%" height="200" onclick=""> </svg>
+							<span class="label label-default">Visina</span>
+            <svg id="fillgauge2" width="19%" height="200" onclick=""></svg>
+            <span class="label label-default">Teža</span>
+                <svg id="fillgauge3" width="19%" height="200" onclick=""></svg>
+                <span class="label label-default">Temperatura</span>
+                <svg id="fillgauge4" width="19%" height="200" onclick=""></svg>
+                <span class="label label-default">Sistolični krvni tlak</span>
+                <svg id="fillgauge5" width="19%" height="200" onclick=""></svg>
+                <span class="label label-default">Diastolični krvni tlak</span>
+                <svg id="fillgauge6" width="19%" height="200" onclick=""></svg>
+                <span class="label label-default">Nasicenost krvi</span>
+                <svg id="fillgauge7" width="15%" height="200" onclick=""> </svg>
+                <span class="label label-default">Utrip</span>
+                			
+ 						  
+ 						 </div> 
+ 					
+            <span id="preberiSporocilo2"></span>
+  
+				  	</div>
+				</div>
+			</div>
+    
+</div>
 <script language="JavaScript">
 
 
 var ime, priimek;
-var visina=190, teza=90, temperatura=30, srcniUtrip=75, spodnjiTlak=115, zgornjiTlak=150, nasicenostKrvi=90;
+var visina=190, teza=90, temperatura=36, srcniUtrip=75, spodnjiTlak=95, zgornjiTlak=110, nasicenostKrvi=90;
 
 function graf(){
   var ID = ("#preberiEHRid");
@@ -221,7 +246,7 @@ function graf(){
     
     var gauge1 = loadLiquidFillGauge("fillgauge1", visina);
     var config1 = liquidFillGaugeDefaultSettings();
-    config1.circleColor = "#FF7777";
+    config1.circleColor = "#bd3900";
     config1.textColor = "#FF4444";
     config1.waveTextColor = "#FFAAAA";
     config1.waveColor = "#FFDDDD";
@@ -230,9 +255,9 @@ function graf(){
     config1.waveAnimateTime = 1000;
     var gauge2= loadLiquidFillGauge("fillgauge2", teza, config1);
     var config2 = liquidFillGaugeDefaultSettings();
-    config2.circleColor = "#D4AB6A";
+    config2.circleColor = "#CC0000";
     config2.textColor = "#553300";
-    config2.waveTextColor = "#805615";
+    config2.waveTextColor = "#CC0000";
     config2.waveColor = "#AA7D39";
     config2.circleThickness = 0.1;
     config2.circleFillGap = 0.2;
@@ -245,10 +270,9 @@ function graf(){
     config3.textVertPosition = 0.8;
     config3.waveAnimateTime = 5000;
     config3.waveHeight = 0.15;
-    config3.waveAnimate = false;
+    config2.waveAnimateTime = 2000;
     config3.waveOffset = 0.25;
-    config3.valueCountUp = false;
-    config3.displayPercent = false;
+    
     var gauge4 = loadLiquidFillGauge("fillgauge4", spodnjiTlak, config3);
     var config4 = liquidFillGaugeDefaultSettings();
     config4.circleThickness = 0.15;
