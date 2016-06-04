@@ -319,6 +319,7 @@ function dodajMeritveVitalnihZnakov() {
 		});
 	}
 	
+	clearText();
 	
 	    var gauge1 = loadLiquidFillGauge("fillgauge1", telesnaVisina);
     var config1 = liquidFillGaugeDefaultSettings();
@@ -405,7 +406,8 @@ function dodajMeritveVitalnihZnakov() {
 
 function preberiEHRodBolnika() {
 	sessionId = getSessionId();
-
+    clearText();
+    
 	var ehrId = $("#preberiEHRid").val();
 
     if (ehrId==ehrId1){
@@ -697,6 +699,18 @@ function preberiEHRodBolnika() {
 	
 }
 
+
+function clearText()  
+{
+     $("#fillgauge1").html("");
+   $("#fillgauge2").html("");
+   $("#fillgauge3").html("");
+   $("#fillgauge4").html("");
+   $("#fillgauge5").html("");
+   $("#fillgauge6").html("");
+   $("#fillgauge7").html("");
+  
+}  
 
 /*!
  * @license Open source under BSD 2-clause (http://choosealicense.com/licenses/bsd-2-clause/)
