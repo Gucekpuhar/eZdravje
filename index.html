@@ -10,8 +10,15 @@
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
-  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+   <script src="https://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+ <script src="knjiznice/js/liquidFillGauge.js" language="JavaScript"></script>
+
+ <style>
+        .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+    </style>
+
+
+
 
 </head>
 <body>
@@ -40,7 +47,7 @@
         <ul class="nav navbar-nav">
           <li><a href="opis.html">Opis ideje</a></li>
           <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
-          <li><a href="#">Generiranje podatkov</a></li>
+          <li><a onclick="generiraj()" href="#">Generiranje podatkov</a></li>
         </ul>
       </div>
     </div>
@@ -50,55 +57,287 @@
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6">
+      
+      <div class="col-lg-5 col-md-4 col-sm-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8"><b>Kreiraj EHR zapis</b> za novega bolnika</div>
+							<div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option></select></div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<span class="label label-default">Ime</span><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="Power">
+						<span class="label label-default">Priimek</span><input id="kreirajPriimek" type="text" class="form-control" placeholder="Ranger">	<span class="label label-default">
+						<button type="button" class="btn btn-primary btn-xs" onclick="kreirajEHRzaBolnika()">Dodaj osnovne podatke o bolniku</button><span id="kreirajSporocilo"></span>
+					<p>	<span id="kreirajSporocilo1"></span> </p>
+
+					<p>	<span id="kreirajSporocilo2"></span></p>
+					<p>	<span id="kreirajSporocilo3"></span></p>
+				  	</div>
+				</div>
+			</div>
+
+      
+      <div class="col-md-6 col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-lg-8 col-md-8 col-sm-8"><b>Vnos</b> višine <b>in teže</b> pacienta</div>
+              <div class="col-lg-8 col-md-8 col-sm-8"><b>Ročni vnos podatkov pacienta </b></div>
                 </div>
               </div>
               <div class="panel-body">
-                <span class="label label-default">Ime</span><input id="Ime" type="text" class="form-control input-mini" placeholder="Janez">
-                <span class="label label-default">Priimek</span><input id="Priimek" type="text" class="form-control" placeholder="Novak">
+                	<span class="label label-default">EHR ID</span><input id="dodajVitalnoEHR" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+					      
+					    	<span class="label label-default">Telesna višina</span><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="180"><span class="input-group-addon">cm</span></div>
+                <span class="label label-default">Telesna teža</span><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="75.00"><span class="input-group-addon">kg</span></div>
+				    		<span class="label label-default">Telesna temperatura</span><div class="input-group"><input id="dodajVitalnoTelesnaTemperatura" type="text" class="form-control input-mini" placeholder="36.50"><span class="input-group-addon">°C</span></div>
+  						<span class="label label-default">Sistolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakSistolicni" type="text" class="form-control input-mini" placeholder="118"><span class="input-group-addon">mm Hg</span></div>
+  						<span class="label label-default">Diastolični krvni tlak</span><div class="input-group"><input id="dodajVitalnoKrvniTlakDiastolicni" type="text" class="form-control input-mini" placeholder="92"><span class="input-group-addon">mm Hg</span></div>
+  						<span class="label label-default">Nasičenost krvi s kisikom</span><div class="input-group"><input id="dodajVitalnoNasicenostKrviSKisikom" type="text" class="form-control input-mini" placeholder="98"><span class="input-group-addon">%</span></div>
+  						<span class="label label-default">Srčni utrip</span><div class="input-group"><input id="dodajVitalnoSrcniUtrip" type="text" class="form-control input-mini" placeholder="75"><span class="input-group-addon">/min</span></div>
+                
                
                 
-                <span class="label label-default">Datum </span><input id="Datum" type="text" class="form-control input-mini" placeholder="2014-11-21">
-                <span class="label label-default">Telesna višina </span><div class="input-group"><input id="TelesnaVisina" type="text" class="form-control input-mini" placeholder="180"><span class="input-group-addon">cm </span></div>
                 
-                <span class="label label-default">Telesna teža </span><div class="input-group"><input id="TelesnaTeza" type="text" class="form-control input-mini" placeholder="75.00"><span class="input-group-addon">kg</span></div>
+              
                 
+               <button type="button" class="btn btn-primary btn-xs" onclick="dodajMeritveVitalnihZnakov()">Dodaj meritve</button><span id="dodajMeritve"></span> 
                
-                
-                
-                <span class="label label-default">EHR ID</span><input id="EHR" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
-                
-               <button type="button" class="btn btn-primary btn-xs" onclick=" dodajPodatke()">Dodaj meritve</button><span id="dodajMeritve"></span> 
-                <button type="button" class="btn btn-primary btn-xs" onclick=" preberiEHR()">Preberi EHR ID</button><span id="preberiEHR"></span> 
                 
                 <br>
-                 <span class="label label-default">Primeri pacientov</span>
-                <select class="form-control input-sm" id="preberiObstojeciEHR"><option value=""></option><option value="254f791d-2e7c-49d9-b646-376f62d6ead5">Janez Novak</option><option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Jaka Racman</option><option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Darth Vader</option></select></div>
+               
               
     
                   </div>
                 </div>
       </div>
+           </div>
+           
+        
+
       
+      	<div class="col-lg-4 col-md-6 col-sm-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8"><b>Preberi podatke</b> obstoječega bolnika</div> 
+							 
+						
+
+							
+						
+						</div>
+					</div>
+					
+				
+					<div class="panel-body">
+						<span class="label label-default">EHR ID</span><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885">
+						<button type="button" class="btn btn-primary btn-xs" onclick="graf()">Preberi podatke o bolniku</button><span id="preberiSporocilo"></span>
+				<div id="howToGenerate"> 
+ 						  <div class="alert alert-info"> 
+                 Da generirate <b>enega vzorčne bolnike</b>, pritisnite gumb "Generiranje podatkov". 
+               </div> 
+ 						 </div> 
+ 					
+            <span id="preberiSporocilo2"></span>
+  
+				  	</div>
+				</div>
+			</div>
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div class="col-lg-12 ">
+      <body>
+<svg id="fillgauge1" width="19%" height="250" onclick=""></svg>
+<svg id="fillgauge2" width="19%" height="200" onclick=""></svg>
+<svg id="fillgauge3" width="19%" height="200" onclick=""></svg>
+<svg id="fillgauge4" width="19%" height="200" onclick=""></svg>
+<svg id="fillgauge5" width="19%" height="200" onclick=""></svg>
+<svg id="fillgauge6" width="19%" height="200" onclick=""></svg>
+<svg id="fillgauge7" width="50%" height="200" onclick=""></svg>
+<script language="JavaScript">
+
+
+var ime, priimek;
+var visina=190, teza=90, temperatura=30, srcniUtrip=75, spodnjiTlak=115, zgornjiTlak=150, nasicenostKrvi=90;
+
+function graf(){
+  var ID = ("#preberiEHRid");
+  var prvi = ("#kreirajSporocilo1");
+  var drugi = ("#kreirajSporocilo2");
+  var tretji = ("#kreirajSporocilo3");
+  if(ID==prvi){
+          ime="Darth";
+         priimek="Vader";
+         visina = 190;
+          teza = 90;
+          temperatura = 30;
+         srcniUtrip = 75;
+          spodnjiTlak = 115;
+         zgornjiTlak = 150;
+         nasicenostKrvi = 90;
+    
+    
+  }else if(ID==drugi){
+          ime="Jaka";
+          priimek="Racman";
+          visina = 120;
+          teza = 55;
+          temperatura = 40;
+          srcniUtrip = 95;
+          spodnjiTlak = 80;
+          zgornjiTlak = 90;
+          nasicenostKrvi = 50;
+    
+    
+  }else if(ID==tretji){
+    
+          ime="Janez";
+          priimek="Novak";
+          visina = 170;
+          teza = 69;
+          temperatura = 36;
+          srcniUtrip = 120;
+          spodnjiTlak = 50;
+          zgornjiTlak = 60;
+          nasicenostKrvi = 75;
+    
+    
+  }else{
+          visina = ("dodajVitalnoTelesnaVisina");
+          teza = ("dodajVitalnoTelesnaTeza");
+          temperatura = ("dodajVitalnoTelesnaTemperatura");
+          srcniUtrip = ("dodajVitalnoSrcniUtrip");
+          spodnjiTlak =("dodajVitalnoKrvniTlakSistolicni");
+          zgornjiTlak = ("dodajVitalnoKrvniTlakDiastolicni");
+          nasicenostKrvi = ("dodajVitalnoNasicenostKrviSKisikom");
+    
+  }
+  
+  
+  
+  
+}
+    
+    
+    var gauge1 = loadLiquidFillGauge("fillgauge1", visina);
+    var config1 = liquidFillGaugeDefaultSettings();
+    config1.circleColor = "#FF7777";
+    config1.textColor = "#FF4444";
+    config1.waveTextColor = "#FFAAAA";
+    config1.waveColor = "#FFDDDD";
+    config1.circleThickness = 0.2;
+    config1.textVertPosition = 0.2;
+    config1.waveAnimateTime = 1000;
+    var gauge2= loadLiquidFillGauge("fillgauge2", teza, config1);
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleColor = "#D4AB6A";
+    config2.textColor = "#553300";
+    config2.waveTextColor = "#805615";
+    config2.waveColor = "#AA7D39";
+    config2.circleThickness = 0.1;
+    config2.circleFillGap = 0.2;
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 2000;
+    config2.waveHeight = 0.3;
+    config2.waveCount = 1;
+    var gauge3 = loadLiquidFillGauge("fillgauge3", temperatura, config2);
+    var config3 = liquidFillGaugeDefaultSettings();
+    config3.textVertPosition = 0.8;
+    config3.waveAnimateTime = 5000;
+    config3.waveHeight = 0.15;
+    config3.waveAnimate = false;
+    config3.waveOffset = 0.25;
+    config3.valueCountUp = false;
+    config3.displayPercent = false;
+    var gauge4 = loadLiquidFillGauge("fillgauge4", spodnjiTlak, config3);
+    var config4 = liquidFillGaugeDefaultSettings();
+    config4.circleThickness = 0.15;
+    config4.circleColor = "#808015";
+    config4.textColor = "#555500";
+    config4.waveTextColor = "#FFFFAA";
+    config4.waveColor = "#AAAA39";
+    config4.textVertPosition = 0.8;
+    config4.waveAnimateTime = 1000;
+    config4.waveHeight = 0.05;
+    config4.waveAnimate = true;
+    config4.waveRise = false;
+    config4.waveHeightScaling = false;
+    config4.waveOffset = 0.25;
+    config4.textSize = 0.75;
+    config4.waveCount = 3;
+    var gauge5 = loadLiquidFillGauge("fillgauge5", zgornjiTlak, config4);
+    var config5 = liquidFillGaugeDefaultSettings();
+    config5.circleThickness = 0.4;
+    config5.circleColor = "#6DA398";
+    config5.textColor = "#0E5144";
+    config5.waveTextColor = "#6DA398";
+    config5.waveColor = "#246D5F";
+    config5.textVertPosition = 0.52;
+    config5.waveAnimateTime = 5000;
+    config5.waveHeight = 0;
+    config5.waveAnimate = false;
+    config5.waveCount = 2;
+    config5.waveOffset = 0.25;
+    config5.textSize = 1.2;
+    config5.minValue = 30;
+    config5.maxValue = 150
+    config5.displayPercent = false;
+    var gauge6 = loadLiquidFillGauge("fillgauge6", nasicenostKrvi, config5);
+     var config6 = liquidFillGaugeDefaultSettings();
+     config6.circleThickness = 0.4;
+    config6.circleColor = "#6DA398";
+    config6.textColor = "#0E5144";
+    config6.waveTextColor = "#6DA398";
+    config6.waveColor = "#246D5F";
+    config6.textVertPosition = 0.52;
+    config6.waveAnimateTime = 5000;
+    config6.waveHeight = 0;
+    config6.waveAnimate = false;
+    config6.waveCount = 2;
+    config6.waveOffset = 0.25;
+    config6.textSize = 1.2;
+    config6.minValue = 30;
+    config6.maxValue = 150
+    config6.displayPercent = false;
+    var gauge7 = loadLiquidFillGauge("fillgauge7", srcniUtrip, config6);
+
+    function NewValue(){
+        if(Math.random() > .5){
+            return Math.round(Math.random()*100);
+        } else {
+            return (Math.random()*100).toFixed(1);
+        }
+    }
+  
+
+  
+
+
+
+</script>
+
+
+
+
+
+ <div class="col-lg-8 " align="right">
        <div class="fb-page" data-href="https://www.facebook.com/budgethealth" data-tabs="timeline" data-width="400" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/budgethealth"><a href="https://www.facebook.com/budgethealth">Healthy Eating on a Student Budget</a></blockquote></div></div>
         
       </div>
     </div>
+      
+      
+
+
+
+</body>
+</html>
+
+
+
+      
+      
+    
   </div>
   <!-- KONEC: Vsebina aplikacije -->
 
