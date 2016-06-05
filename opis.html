@@ -22,7 +22,7 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">{ime vaše aplikacije}</a>
+        <a class="navbar-brand" href="index.html">Pregled zdravja</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
@@ -44,9 +44,11 @@
             <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno dodati <strong>osnovni opis ideje rešitve</strong> (kakšen je osnovni SCENARIJ UPORABE, KDO je ciljna publika, za kakšen NAMEN se aplikacija uporablja).</p><p class="text-muted">Opis naj ne bo daljši od 200 besed.</p>
-            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+            Ta aplikacija je namenjena tako pacientom kot izbranim zdravnikom. In sicer: pacineti lahko sproti vnašajo in preverjajo podatke o svojem zdravstvenem stanju (telesna temperatura, srčni utrip, ...), 
+            ter tako ugotavljajo odstopanja od normalnega zdravstvenega stanja. V primeru vidnejših odstopanj lahko hitreje ukrepajo. Možna nadgradnja aplikacije bi bila integracija z mobilnimi (oz. priročnimi)
+            merilniki vitalnih znakov, ki bi sproti vnašali podatke v aplikacijsko bazo in v primeru večjih odstopanj opozorili nosilca ali izbranega zdravnika. Do teh podatkov bi lahko tudi sproti dostopali
+            zdravsteni specialisti, ki bi nadzorovali bolnikovo zdravsteno stanje in pravočasno izvajali morebitne preventivne ukrepe.
+            
           </div>
         </div>
         <div class="panel panel-default">
@@ -54,9 +56,11 @@
             <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je navesti zunanji vir podatkov (URL naslov), na kakšen način ste ga uporabili (neposredni API klic, uvožena statična datoteka ipd.) in kaj je bil namen uporabe (kako se vključuje v osnovno idejo aplikacije).</p>
-            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+            Ker je za zdravje zelo pomembna tudi prehrana, sem se odločil v aplikacijo vključiti Embedded Facebook timeline. In sicer <a href="https://www.facebook.com/budgethealth/">Healthy Eating on a Student Budget </a>, 
+            ter <a href="https://www.facebook.com/healthdigest/"> Health digest</a> , 
+            ker prva uporabniku posreduje informacije o zdravi prehrani po ugodnih cenah(za študenta dodatna koristnost), druga pa splošne nasvete o zdravem življenju. 
+            Aplikaciji sem vključil v stran tako, da sem naredil okno, v katerem se
+            pojavi določen Facebook timeline in to okno povezal s prej omenjenima stranema.
           </div>
         </div>
         <div class="panel panel-default">
@@ -64,9 +68,8 @@
             <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
-            <p><strong>TO-DO</strong>: Na tem mestu morate navesti uporabljen master/detail načrtovalski vzorec in na kakšen način ga nameravate uporabiti.</p>
-            <!-- KONEC: Master/detail načrtovalski vzorec -->
+            Master načrtovalski vzorec je naslednji: Aplikacija vzame podane podatke o uporabnikovem zdravstvenem stanju, jih prikaže na bolj pregleden način, hkrati prikaže tabelo, 
+            v kateri so napisane idealne (oz. normalne) vrednosti osnovnih parametrov zdravja.
           </div>
         </div>
         <div class="panel panel-default">
@@ -74,9 +77,9 @@
             <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
           </div>
           <div class="panel-body">
-            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno navesti uporabljeno tehniko vizualizacije podatkov (za pomoč lahko uporabite primer iz <a href="https://github.com/mbostock/d3/wiki/Gallery" target="_blank">D3.js galerije</a>) in zakaj je bila ta tehnika izbrana.</p>
-            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+            Uporabil sem  <a href="http://bl.ocks.org/brattonc/5e5ce9beee483220e2f6"> D3 Liquid Fill Gauge </a>, ker se mi je zdel način prikaza zanimiv, lep in čist,
+            hkrati pa lahek za razumeti. Za razliko od nekaterih drugih načinov prikazovanja je imela ta aplikacija celotno kodo že na svoji strani napisano.
+            <img src="slike/diagram.png" height="300" width="800">
           </div>
         </div>
       </div>
